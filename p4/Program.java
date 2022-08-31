@@ -13,7 +13,7 @@ public class Program {
 
     private static final Controller controller = new Controller();
 
-    public static void main(String[] args) throws IOException {
+    public static void ma채in(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         while (true) {
