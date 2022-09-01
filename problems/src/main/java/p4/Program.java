@@ -1,6 +1,6 @@
 package p4;
 
-import backendschool2.p4.controller.Controller;
+import p4.controller.Controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -12,14 +12,17 @@ public class Program {
     public static final String INFO_EXIT = "프로그램이 종료되었습니다.";
 
     private static final Controller controller = new Controller();
+    public static final String COMMAND_EXIT = "0";
+    public static final String COMMAND_LIST = "1";
+    public static final String COMMAND_REGISTER = "2";
 
-    public static void ma채in(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         while (true) {
             System.out.print(INFO);
             String cmd = br.readLine();
-            if (cmd.equals("0")) {
+            if (cmd.equals(COMMAND_EXIT)) {
                 System.out.println(INFO_EXIT);
                 break;
             }
@@ -28,11 +31,11 @@ public class Program {
     }
 
     static void handleCommand(String cmd) throws IOException {
-        if (cmd.equals("1")) {
+        if (cmd.equals(COMMAND_LIST)) {
             controller.wholeList();
         }
 
-        if (cmd.equals("2")) {
+        if (cmd.equals(COMMAND_REGISTER)) {
             controller.register();
         }
     }
