@@ -17,7 +17,7 @@ public class Program {
 
         for (int i = 0; i < cash.length; i++) {
             if (cash[i] <= cost) {
-                result[i] = (cost / cash[i]);
+                result[i] = cost / cash[i];
                 cost %= cash[i];
             }
         }
