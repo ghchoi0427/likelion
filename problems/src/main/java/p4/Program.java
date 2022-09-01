@@ -24,7 +24,7 @@ public class Program {
             String cmd = br.readLine();
             if (cmd.equals(COMMAND_EXIT)) {
                 System.out.println(INFO_EXIT);
-                break;
+                return;
             }
             handleCommand(cmd);
         }
