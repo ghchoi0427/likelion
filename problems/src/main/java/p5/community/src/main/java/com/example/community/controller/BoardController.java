@@ -40,10 +40,7 @@ public class BoardController {
 
     @PostMapping("/new")
     public String uploadBoard(@ModelAttribute BoardDto dto) {
-        Board board = new Board();
-        board.setContent(dto.getContent());
-        board.setTitle(dto.getTitle());
-        board.setWriter(dto.getWriterName());
+        Board board = new Board(dto.getTitle(),dto.getContent(),dto.getWriterName());
         board.setCreateTime(LocalDateTime.now());
         boardService.upload(board);
         return "redirect:/board/list";
