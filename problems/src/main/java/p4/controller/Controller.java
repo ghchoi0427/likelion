@@ -1,7 +1,7 @@
 package p4.controller;
 
-import backendschool2.p4.domain.Post;
-import backendschool2.p4.repository.Repository;
+import p4.domain.Post;
+import p4.repository.Repository;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -15,7 +15,7 @@ public class Controller {
     public static final String TABLE_HEAD = "  no                title                 date ";
     public static final String ADD_COMPLETE = "글이 추가되었습니다.";
 
-    private Repository repository = Repository.getInstance();
+    private final Repository repository = Repository.getInstance();
 
     public void wholeList() {
         List<Post> postList = repository.getAllPosts();
