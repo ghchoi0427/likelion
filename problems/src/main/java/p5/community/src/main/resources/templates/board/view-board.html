@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${board.title}"></title>
+</head>
+<body>
+<div>
+    <label>작성자: </label>
+    <label th:text="${board.writerName}"></label>
+</div>
+<div>
+    <label>제목: </label>
+    <label th:text="${board.title}"></label>
+</div>
+<div>
+    <label>내용: </label>
+    <label th:text="${board.content}"></label>
+</div>
+<div>
+    <form th:action="${board.boardId}+'/comment'" method="post">
+        <input placeholder="작성자" th:field="${newComment.writer}">
+        <input placeholder="댓글을 작성하세요" th:field="${newComment.content}">
+        <button type="submit">작성</button>
+    </form>
+    <table class="tb_col">
+        <tr>
+            <th>작성자</th>
+            <th>내용</th>
+        </tr>
+        <tr th:each="comment : ${comments}">
+            <td th:text="${comment.writer}"></td>
+            <td th:text="${comment.content}"></td>
+        </tr>
+    </table>
+</div>
+</body>
+</html>
