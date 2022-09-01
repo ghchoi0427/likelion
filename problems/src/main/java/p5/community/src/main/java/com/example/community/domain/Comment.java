@@ -15,6 +15,17 @@ public class Comment {
     private Long boardId;
     private LocalDateTime createTime;
 
+    public Comment(String writer, String content, Long boardId, LocalDateTime createTime) {
+        this.writer = writer;
+        this.content = content;
+        this.boardId = boardId;
+        this.createTime = createTime;
+    }
+
+    public Comment() {
+
+    }
+
     public String getContent() {
         return content;
     }
