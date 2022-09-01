@@ -10,7 +10,7 @@ public class Program {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int[] cash = new int[]{50000, 10000, 5000, 1000, 500, 100, 50, 10};
-        int[] result = new int[8];
+        int[] result = new int[cash.length];
 
         System.out.print(INPUT_MONEY);
         int cost = Integer.parseInt(br.readLine());
