@@ -22,10 +22,6 @@ public class BoardService {
     public BoardService() {
     }
 
-//    public List<Board> getAllBoards() {
-//        return repository.findAll();
-//    }
-
     public List<BoardDto> getAllBoards() {
         return repository.findAll().stream().map(BoardDto::from).collect(Collectors.toList());
     }
