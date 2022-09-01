@@ -25,10 +25,6 @@ public class BoardController {
 
     @GetMapping("/list")
     public String list(Model model) {
-//        model.addAttribute("boards", boardService.getAllBoards()
-//                .stream()
-//                .map(board -> new BoardDto(board.getId(), board.getTitle(), board.getContent(), board.getWriter())).collect(Collectors.toList()));
-
         model.addAttribute("boards",
                 boardService.getAllBoards()
                 .stream()
@@ -59,20 +55,13 @@ public class BoardController {
         BoardDto dto = BoardDto.from(board);
         model.addAttribute("board", dto);
         model.addAttribute("comments", commentService.getComments(board.getId()));
-
-        System.out.println("commentService.getComments(board.getId()).size() = " + commentService.getComments(board.getId()).size());
-
         model.addAttribute("newComment", new CommentDto());
         return "board/view-board";
     }
 
     @PostMapping("/{boardId}/comment")
     public String comment(@PathVariable Long boardId ,@ModelAttribute CommentDto dto) {
-        Comment comment = new Comment();
-        comment.setBoardId(boardId);
-        comment.setContent(dto.getContent());
-        comment.setWriter(dto.getWriter());
-        comment.setCreateTime(LocalDateTime.now());
+        Comment comment = new Comment(dto.getWriter(), dto.getContent(), boardId, LocalDateTime.now());
         commentService.newComment(comment);
         return "redirect:/board/" + boardId;
     }
