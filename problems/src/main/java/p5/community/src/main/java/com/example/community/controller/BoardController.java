@@ -43,7 +43,7 @@ public class BoardController {
     }
 
     @PostMapping("/new")
-    public String uploadBoard(@ModelAttribute BoardDto dto) {
+    public String newBoard(@ModelAttribute BoardDto dto) {
         boardService.upload(dto);
         return "redirect:/board/list";
     }
