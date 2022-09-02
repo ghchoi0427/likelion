@@ -9,6 +9,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class BoardService {
 
@@ -18,8 +20,12 @@ public class BoardService {
     public BoardService() {
     }
 
-    public Page<Board> getAllBoards(Pageable pageable) {
+    public Page<Board> getAllBoardsPaged(Pageable pageable) {
         return repository.findAll(pageable);
+    }
+
+    public List<Board> getAllBoards() {
+        return repository.findAll();
     }
 
     public void upload(BoardDto dto) {

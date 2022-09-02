@@ -23,11 +23,17 @@ public class BoardController {
     private CommentService commentService;
 
     @GetMapping("/list")
-    public String list(@PageableDefault Pageable pageable, Model model) {
+    public String list(Model model) {
+        model.addAttribute("boards", boardService.getAllBoards());
+        return "/board/list";
+    }
+
+    @GetMapping("/pagingList")
+    public String pagingList(@PageableDefault Pageable pageable, Model model) {
         int[] pageNumbers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
-        model.addAttribute("boards", boardService.getAllBoards(pageable));
+        model.addAttribute("boards", boardService.getAllBoardsPaged(pageable));
         model.addAttribute("pageNumbers", pageNumbers);
-        return "board/list";
+        return "/board/pagingList";
     }
 
     @GetMapping("/new")

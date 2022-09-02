@@ -22,5 +22,9 @@
     </tr>
 </table>
 
+<div th:if="${boards.totalPages > 0}" class="pagination" th:each="pageNumber : ${pageNumbers}">
+    <a th:href="@{/board/pagingList(size=${boards.size}, page=${pageNumber})}" th:text="${pageNumber}"
+       th:class="${pageNumber==boards.number + 1} ? active" style="display: flex"></a>
+</div>
 </body>
 </html>
