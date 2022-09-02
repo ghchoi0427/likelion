@@ -20,23 +20,23 @@ public class Program {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         while (true) {
-            System.out.print(INFO);
-            String cmd = br.readLine();
-            if (cmd.equals(COMMAND_EXIT)) {
-                System.out.println(INFO_EXIT);
-                return;
+            System.out.print(INFO);             //안내 메시지를 출력한다.
+            String cmd = br.readLine();         //명령어를 입력받는다.
+            if (cmd.equals(COMMAND_EXIT)) {     //종료 명령어를 입력받을 경우
+                System.out.println(INFO_EXIT);  //종료 메시지를 출력하고
+                return;                         //리턴한다.
             }
-            handleCommand(cmd);
+            handleCommand(cmd);                 //명령어를 처리한다.
         }
     }
 
-    static void handleCommand(String cmd) throws IOException {
-        if (cmd.equals(COMMAND_LIST)) {
-            controller.wholeList();
+    static void handleCommand(String cmd) throws IOException {      //명령어 처리를 담당하는 메서드
+        if (cmd.equals(COMMAND_LIST)) {     //조회 명령어를 입력받을 경우
+            controller.wholeList();         //컨트롤러 조회 메서드를 실행한다.
         }
 
-        if (cmd.equals(COMMAND_REGISTER)) {
-            controller.register();
+        if (cmd.equals(COMMAND_REGISTER)) { //등록 명령어를 입력받을 경우
+            controller.register();          //컨트롤러 등록 메서드를 실행한다.
         }
     }
 }

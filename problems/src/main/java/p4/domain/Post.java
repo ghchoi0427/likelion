@@ -4,15 +4,15 @@ import java.time.LocalDate;
 
 public class Post {
 
-    private int id;
-    private String title;
-    private String writer;
-    private final LocalDate localDate;
+    private int id;     //기본키
+    private String title;   //제목
+    private String writer;  //작성자
+    private final LocalDate localDate;  //작성일
 
     public Post(String title, String writer) {
         this.title = title;
         this.writer = writer;
-        this.localDate = LocalDate.now();
+        this.localDate = LocalDate.now();   //객체 생성 시 날짜가 설정된다.
     }
 
     public LocalDate getLocalDate() {

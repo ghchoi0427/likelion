@@ -17,25 +17,25 @@ public class Controller {
 
     private final Repository repository = Repository.getInstance();
 
-    public void wholeList() {
-        List<Post> postList = repository.getAllPosts();
+    public void wholeList() {     //모든 게시글을 보여주는 메서드
+        List<Post> postList = repository.getAllPosts();     //레포지토리에서 Post를 받아온다.
         System.out.println(LIST_ALL);
         System.out.println(TABLE_HEAD);
         for (Post post : postList) {
-            System.out.printf("%2d %16s %17s\n", post.getId(), post.getTitle(), post.getLocalDate().toString());
+            System.out.printf("%2d %16s %17s\n", post.getId(), post.getTitle(), post.getLocalDate().toString());    //형식에 맞게 출력한다.
         }
     }
 
-    public void register() throws IOException {
+    public void register() throws IOException {     //게시물을 등록하는 메서드
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 
         System.out.print(INPUT_TITLE);
-        String title = br.readLine();
+        String title = br.readLine();       //제목 입력
         System.out.print(INPUT_WRITER);
-        String writer = br.readLine();
+        String writer = br.readLine();      //작성자 입력
 
-        Post post = new Post(title, writer);
-        repository.save(post);
+        Post post = new Post(title, writer);    //새로운 객체를 생성자를 이용해 생성한다.
+        repository.save(post);                  //레포지토리에 저장한다.
         System.out.println(ADD_COMPLETE);
     }
 }
