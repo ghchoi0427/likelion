@@ -5,9 +5,13 @@ import com.example.community.dto.CommentDto;
 import com.example.community.service.BoardService;
 import com.example.community.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
+import javax.annotation.PostConstruct;
 
 @Controller
 @RequestMapping("/board")
@@ -19,8 +23,10 @@ public class BoardController {
     private CommentService commentService;
 
     @GetMapping("/list")
-    public String list(Model model) {
-        model.addAttribute("boards", boardService.getAllBoards());
+    public String list(@PageableDefault Pageable pageable, Model model) {
+        int[] pageNumbers = new int[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        model.addAttribute("boards", boardService.getAllBoards(pageable));
+        model.addAttribute("pageNumbers", pageNumbers);
         return "board/list";
     }
 
@@ -46,8 +52,16 @@ public class BoardController {
     }
 
     @PostMapping("/{boardId}/comment")
-    public String comment(@PathVariable Long boardId ,@ModelAttribute CommentDto dto) {
+    public String comment(@PathVariable Long boardId, @ModelAttribute CommentDto dto) {
         commentService.newComment(dto, boardId);
         return "redirect:/board/" + boardId;
+    }
+
+    @PostConstruct
+    public void fill() {
+        for (int i = 0; i < 500; i++) {
+            BoardDto dto = new BoardDto((long) i, "title" + i, "content" + i, "writer" + i);
+            boardService.upload(dto);
+        }
     }
 }
