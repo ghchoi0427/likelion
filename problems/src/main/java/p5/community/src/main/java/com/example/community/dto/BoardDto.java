@@ -60,6 +60,7 @@ public class BoardDto {
         this.title = title;
         this.content = content;
         this.writerName = writerName;
+        this.createTime = LocalDateTime.now();
     }
 
     public static BoardDto from(Board board) {
