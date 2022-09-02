@@ -9,10 +9,6 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Service
 public class BoardService {
 
@@ -22,13 +18,12 @@ public class BoardService {
     public BoardService() {
     }
 
-    public List<BoardDto> getAllBoards() {
-        return repository.findAll().stream().map(BoardDto::from).collect(Collectors.toList());
+    public Page<Board> getAllBoards(Pageable pageable) {
+        return repository.findAll(pageable);
     }
 
     public void upload(BoardDto dto) {
-        Board board = new Board(dto.getTitle(), dto.getContent(), dto.getWriterName());
-        board.setCreateTime(LocalDateTime.now());
+        Board board = new Board(dto.getTitle(), dto.getContent(), dto.getWriterName(), dto.getCreateTime());
         repository.save(board);
     }
 
