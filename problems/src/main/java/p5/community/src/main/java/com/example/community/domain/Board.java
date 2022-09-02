@@ -4,7 +4,6 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name="bulletin_board")
 public class Board {
 
     @Id
@@ -22,6 +21,13 @@ public class Board {
         this.title = title;
         this.content = content;
         this.writer = writer;
+    }
+
+    public Board(String title, String content, String writer, LocalDateTime createTime) {
+        this.title = title;
+        this.content = content;
+        this.writer = writer;
+        this.createTime = createTime;
     }
 
     public String getTitle() {
