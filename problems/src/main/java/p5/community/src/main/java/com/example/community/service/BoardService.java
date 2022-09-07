@@ -14,10 +14,10 @@ import java.util.List;
 @Service
 public class BoardService {
 
-    @Autowired
-    BoardRepository repository;
+    private final BoardRepository repository;
 
-    public BoardService() {
+    public BoardService(BoardRepository repository) {
+        this.repository = repository;
     }
 
     public Page<Board> getAllBoardsPaged(Pageable pageable) {

@@ -4,7 +4,6 @@ import com.example.community.dto.BoardDto;
 import com.example.community.dto.CommentDto;
 import com.example.community.service.BoardService;
 import com.example.community.service.CommentService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
@@ -17,10 +16,13 @@ import javax.annotation.PostConstruct;
 @RequestMapping("/board")
 public class BoardController {
 
-    @Autowired
-    private BoardService boardService;
-    @Autowired
-    private CommentService commentService;
+    private final BoardService boardService;
+    private final CommentService commentService;
+
+    public BoardController(BoardService boardService, CommentService commentService) {
+        this.boardService = boardService;
+        this.commentService = commentService;
+    }
 
     @GetMapping("/list")
     public String list(Model model) {
